@@ -39,11 +39,6 @@ document.querySelector('#checkAll').addEventListener('click', function () {
 
 // log in
 function logIn() {
-// 	$.post("https://sakai.ohsu.edu/direct/session",$("#myForm").serialize()).done(function(data) {
-// 		alert(data);
-// 	});
-	
-	
 	request.post({url:host+"/direct/session", form: {_username:username,_password:password}}, function(err,httpResponse,body){ 
 			if (httpResponse.statusCode == 403 || httpResponse.statusCode == 301 ) {
 				alert("Invalid Login");
@@ -121,9 +116,9 @@ function updateAssignment(assignmentId, multiple=false) {
 function updateRowStatus(data, assignmentId) {
 	if (data=="success") {
 		//alert("yay!");
-		$("#row-"+assignmentId).toggleClass('done');
+		//$("#row-"+assignmentId).toggleClass('done');
 	} else {
-		alert("An error occurred: "+body+":"+host+"/sakai-ws/rest/assignments/shiftAssignmentDates?assignmentId=" + assignmentId + "&shiftDays="+ shiftDays + "&shiftHours=" + shiftHours ); //+ "&sessionId=" + sessionId);
+		//alert("An error occurred: "+body+":"+host+"/sakai-ws/rest/assignments/shiftAssignmentDates?assignmentId=" + assignmentId + "&shiftDays="+ shiftDays + "&shiftHours=" + shiftHours ); //+ "&sessionId=" + sessionId);
 	}
 }
 
@@ -146,15 +141,4 @@ function changeCourse() {
 	$('#assignmentList').text('');
 	siteId = document.querySelector('#siteIdNew').value;
 	getSiteId();
-}
-
-//OLD BELOW...
-
-
-function closeSession(session) {
-	var url = "https://sakai.ohsu.edu/sakai-ws/rest/login/logout?sessionid="+session;
-	//alert(url);
-	request(url, function(err, res,body) {
-		//alert(body);
-	});
 }
