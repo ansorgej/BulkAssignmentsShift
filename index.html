@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Shift Assignment Dates</title>
+    <script>window.$ = window.jQuery = require('jquery');</script>
+    <style>
+.assignmentTitle {
+width: 12em;
+display:inline-block;
+}
+.dueDate {
+width: 12em;
+display:inline-block;
+}
+.shiftedDueDate, .shiftedDueDateHeader {
+width:14em;
+display:inline-block;
+}
+.shiftedDueDate {
+	background-color: yellow;
+}
+.header {
+	background-color: #efefef;
+}
+.assignmentItem {
+	transition: background-color 3s;
+}
+.done {
+	background-color: green;
+}
+</style>
+    
+  </head>
+  <body>
+  <div id="loginPane">
+    <h1>Enter some information</h1>
+    <p>Sakai Host Name: <input type="text" id="hostInput"></p> (e.g. http://yoursakai.youruniv.edu)
+    <form id="myForm">
+    <p>Username: <input type="text" name="_username" id="username" >
+    <p>Password: <input type="password" name="_password" id="password" >
+    </form>
+    <p>SiteId or URL with siteId: <input type="text" id="siteIdInput" value="" size="100">
+        
+    <p><button id="getAssignments">Get Assignments for site</button>
+</div>
+<div id="assignmentUpdatePane" style="display:none">
+   <p>Shift all assignment dates by <input type="text" id="shiftDays" value="5"> days and <input type="text" id="shiftHours" value="1"> hours.</p>
+   <p>(<strong>All dates will be incremented by the same amount</strong>, including the open date, due date, accept until date, peer review due date, and resubmit date.)</p>
+    <div class='assignmentItem header'><span class='assignmentCheck'><input type='checkbox' id='checkAll' class='checkAllCheckbox'><span class='assignmentTitle'>Assignment Title</span><span class='dueDate'> Original Due Date</span><span class='shiftedDueDateHeader'>New Due Date Will be</span></div>
+    <div id="assignmentList">
+    
+    </div>
+    <div>
+    <p>
+    <button id="updateSelectedAssignmentsButton">Update Selected Assignments</button>
+    </p>
+    <p>
+    Switch course: <input type="text" id="siteIdNew"> <button id="changeCourseButton">Load New Course</button>
+    </p>
+    <p>
+    <button id="loginagain">Log in again</button>
+    </P>
+    </div>
+</div>
+    
+  </body>
+
+  <script>
+    require('./scripts.js');
+  </script>
+</html>

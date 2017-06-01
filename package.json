@@ -1,0 +1,59 @@
+{
+  "name": "AssignmentsDateShifter",
+  "version": "1.0.0",
+  "description": "A tool for adjusting all dates in Sakai Assignments tool.",
+  "main": "main.js",
+  "scripts": {
+    "postinstall": "install-app-deps",
+    "start": "npm install && electron ./app",
+    "pack": "build --dir",
+    "dist": "build"
+  },
+  "repository": "https://github.com/electron/electron-quick-start",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "build": {
+    "appId": "edu.ohsu.assignmentDateShifter",
+    "dmg": {
+      "contents": [
+        {
+          "x": 110,
+          "y": 150
+        },
+        {
+          "x": 240,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "build/icon.ico"
+    }
+  },
+  "author": "GitHub",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "apv": "0.0.1",
+    "electron": "latest",
+    "electron-builder": "latest"
+  },
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "moment": "^2.18.1",
+    "request": "^2.81.0"
+  }
+}
