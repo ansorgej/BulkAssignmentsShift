@@ -3,8 +3,9 @@ A tool for Sakai to update Assignment dates in bulk.  Really basic.  Built with 
 
 To build project:
 
-1. Install NodeJS and NPM if needed
-2. Clone this
+1. Install NodeJS and NPM if needed (https://nodejs.org/en/download/)
+2. Clone this git repository
+3. Go to the cloned directory in your shell and run these commands
 3. "npm install"
 4. "npm run dist"
 
