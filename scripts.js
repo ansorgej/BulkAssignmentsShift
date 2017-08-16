@@ -11,6 +11,7 @@ var newSiteId = "";
 var newSiteTitle = "";
 var request = require("request");
 var moment = require('moment');
+var soap = require('soap');
 request = request.defaults({jar: true});
 if (window.localStorage.getItem("host")) {
 	document.querySelector("#hostInput").value = window.localStorage.getItem("host");
@@ -39,6 +40,7 @@ document.querySelector('#checkAll').addEventListener('click', function () {
 
 // log in
 function logIn() {
+	wsLogIn();
 	request.post({url:host+"/direct/session", form: {_username:username,_password:password}}, function(err,httpResponse,body){ 
 			if (httpResponse.statusCode == 403 || httpResponse.statusCode == 301 ) {
 				alert("Invalid Login");
@@ -50,6 +52,16 @@ function logIn() {
 				getSiteId();
 			}
 		});
+}
+
+function wsLogIn() {
+	var wsdlUrl = host+"/sakai-ws/soap/login?wsdl";
+	var args = {pw:password,id:username};
+	soap.createClient(wsdlUrl, function(err, client) {
+		client.login(args, function(err, result) {
+			wsSessionId = result.return;
+		});
+	});
 }
 
 function getSiteId() { 
@@ -100,9 +112,8 @@ function updateAssignmentShiftTimes() {
 function updateAssignment(assignmentId, multiple=false) { 
 	shiftDays = $('#shiftDays').val();
 	shiftHours = $('#shiftHours').val();
-	var testhing = "beep";
 	var req = $.ajax({
-		url: host+"/sakai-ws/rest/assignments/shiftAssignmentDates?assignmentId=" + assignmentId + "&shiftDays="+ shiftDays + "&shiftHours=" + shiftHours + "&sessionId=" + sessionId,
+		url: host+"/sakai-ws/rest/assignments/shiftAssignmentDates?assignmentId=" + assignmentId + "&shiftDays="+ shiftDays + "&shiftHours=" + shiftHours + "&sessionId=" + wsSessionId,
 		dataType: "text"
 	}).done(function(data) {
 			updateRowStatus(data, assignmentId);
