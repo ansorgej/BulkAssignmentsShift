@@ -119,7 +119,7 @@ function updateAssignment(assignmentId, multiple=false) {
 			updateRowStatus(data, assignmentId);
 		});
 	if (!multiple) {
-		refreshAssignments();
+		settimeout(refreshAssignments,300);
 	}
 	return req.promise();
 }
