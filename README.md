@@ -1,4 +1,4 @@
-# BulkAssignmentsShift
+# BulkAssignmentsShift (Compatible with Sakai 11 only)
 A tool for Sakai to update Assignment dates in bulk.  Really basic.  Built with Electron.
 
 To build project:
